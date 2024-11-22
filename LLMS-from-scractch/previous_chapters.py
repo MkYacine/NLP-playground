@@ -78,6 +78,7 @@ class MultiHeadAttention(nn.Module):
         self.out_proj = nn.Linear(d_out, d_out)  # Linear layer to combine head outputs
         self.dropout = nn.Dropout(dropout)
         self.register_buffer('mask', torch.triu(torch.ones(context_length, context_length), diagonal=1))
+        self.last_attn_weights = None  # Keep track of attention score for visualization purposes
 
     def forward(self, x):
         b, num_tokens, d_in = x.shape
@@ -107,6 +108,7 @@ class MultiHeadAttention(nn.Module):
         attn_scores.masked_fill_(mask_bool, -torch.inf)
 
         attn_weights = torch.softmax(attn_scores / keys.shape[-1]**0.5, dim=-1)
+        self.last_attn_weights = attn_weights.detach()  # Store attention weights
         attn_weights = self.dropout(attn_weights)
 
         # Shape: (b, num_tokens, num_heads, head_dim)
