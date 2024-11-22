@@ -25,9 +25,10 @@ Implementation and experimentation with the Financial NER Open Research Dataset 
 
 **Current Progress:**
 - ✅ BERT finetuning on FiNER-ORD
-- 🚧 MLOps deployment on AWS SageMaker
-- 📋 LLM finetuning (Planned)
+- ✅ MLOps deployment on AWS SageMaker
+- ✅ LLM finetuning
 - 📋 Closed-source LLM evaluation (Planned)
+- 📋 Document findings and compare performance and cost
 
 **Implemented Papers:**
 - FiNER-ORD: Building a High-Quality English Financial NER Open Research Dataset [https://arxiv.org/abs/2302.11157]
